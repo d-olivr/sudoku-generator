@@ -20,9 +20,11 @@ Gerador de jogos de Sudoku 9×9 (com respostas), feito para a Questão 2 da Segu
 
 A particularidade deste projeto: a **geração do tabuleiro completo não usa backtracking**. Em vez de tentativa-e-erro, ela parte de um tabuleiro-base fixo (construído por uma fórmula fechada) e aplica uma cadeia de transformações que **sempre preservam a validade** de um Sudoku - o resultado final parece facultativo, mas é garantido ser correto, sem risco de travar durante a geração
 
-Disponível em duas versões equivalentes:
-- **`scripts/questao2_sudoku.py`** - script standalone, roda em qualquer ambiente Python
-- **`notebooks/questao2_sudoku.ipynb`** - mesma lógica mas em células, pensado para o Google Colab, com explicações em markdown intercaladas com o código. Esse é o arquivo que de fato enviei para o professor
+Disponível em duas versões:
+- **`scripts/sudoku-generator.py`** 
+- **`notebooks/sudoku-generator.ipynb`**
+
+O código foi desenvolvido inicialmente como um script Python no VSCode, para trabalhar no ambiente de desenvolvimento padrão e ter espaço para testar e estudar o que foi necessário ao longo do projeto, por exemplo, a heurística MRV (minimum remaining values) usada no solver extra, que eu não conhecia antes de pesquisar para esta questão. Só depois desse script estar completo, testado e entendido, traduzi o conteúdo no notebook, para atender ao formato .ipynb solicitado pelo professor.
 
 ---
 
@@ -125,17 +127,17 @@ O script roda uma bateria de 7 testes automatizados (`testes()`) como ponto de e
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/SEU_USUARIO/sudoku-generator.git
+git clone https://github.com/d-olivr/sudoku-generator.git
 cd sudoku-generator
 
 # Instalar dependências
 pip install -r requirements.txt
 
 # Rodar o script (executa os testes automaticamente e depois a demonstração)
-python scripts/questao2_sudoku.py
+python scripts/sudoku-generator.py
 ```
 
-Ou abra `notebooks/questao2_sudoku.ipynb` direto no Google Colab (`Arquivo -> Fazer upload de notebook`).
+Ou abra `notebooks/sudoku-generator.ipynb` direto no Google Colab (`Arquivo -> Fazer upload de notebook`).
 
 Para o modo interativo (escolher quantidade de jogos e dificuldade), comente as chamadas a `testes()`/`demonstracao()` no final do script e descomente a chamada a `main()`.
 
@@ -143,5 +145,7 @@ Para o modo interativo (escolher quantidade de jogos e dificuldade), comente as 
 
 ## 🤖 Uso de LLM
 
-Conforme exigido no enunciado do trabalho, o uso de LLM (nesse caso, o Claude, da Anthropic) está declarado diretamente nos comentários do topo de `sudoku-generator.py` e na primeira célula do notebook, detalhando especificamente em que pontos a IA foi utilizada para o projeto (revisão da corretude das transformações, organização do fluxo interativo/de testes). Apesar da ajuda extra da ferramenta, o raciocínio sobre por que cada transformação preserva a validade de um Sudoku foi entendido e validado manualmente. :)
+Conforme exigido no enunciado do trabalho, o uso de LLM (nesse caso, o Claude, da Anthropic) está declarado diretamente nos comentários do topo de `sudoku-generator.py` e na primeira célula do notebook, detalhando especificamente em que pontos a IA foi utilizada para o projeto (revisão da corretude das transformações, organização do fluxo interativo/de testes, sugestão do solver com MRV). Apesar da ajuda extra da ferramenta, o raciocínio sobre por que cada transformação preserva a validade de um Sudoku foi entendido e validado manualmente. 
+
+Também utilizei LLM para gerar este README! Mandei um README que gostei bastante de outro projeto meu, e pedi que fosse adaptado para esse projeto do Sudoku. Com revisão manual posteriormente, claro. :)
 
